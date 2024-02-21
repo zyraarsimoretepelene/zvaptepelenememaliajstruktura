@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ZVAP TEPELENE-MEMALIAJ</title>
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background-color: #f0f0f0;
+        position: relative; 
+        background: #bdc3c7;  
+background: -webkit-linear-gradient(to right, #2c3e50, #bdc3c7);  
+background: linear-gradient(to right, #2c3e50, #bdc3c7); 
+
+    }
+    .container {
+        top:0%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 80%;
+        position: relative; 
+    }
+    .box {
+        width: 200px;
+        height: 100px;
+        background-color: #3498db;
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative; 
+    }
+    .box img {
+        width: 100%; 
+        height: 100%; 
+        object-fit: cover; 
+        border-radius: 10px;
+    }
+    img{
+        width: 100%; 
+        height: 100%; 
+        object-fit: cover; 
+        border-radius: 10px;
+    }
+    .line {
+        flex: 1;
+        height: 3px;
+        background-color: #333;
+        position: relative; 
+    }
+    .vertical-line {
+        position: absolute;
+        top: 100%;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 3px;
+        height: 300px; 
+        background-color: #333;
+    }
+    .vertical-line-up {
+        position: absolute;
+        bottom: 100%; 
+        left: 50%;
+        transform: translateX(-50%) rotate(180deg); 
+        width: 3px;
+        height: 300px; 
+        background-color: #333;
+    }
+    .horizontal-line-up {
+        width: 50px;        
+        position: absolute;
+        bottom: 190%; 
+        left: 62%; 
+        transform: translate(-50%, 0);
+        height: 3px; 
+        background-color: #333;
+    }
+    .horizontal-line {
+        width: 50px;        
+        position: absolute;
+        top: 200%;
+        left: 62%;
+        transform: translate(-50%, -50%);
+        height: 3px; 
+        background-color: #333;
+    }
+    .horizontal-line-2 {
+        width: 50px;        
+        position: absolute;
+        top: 300%;
+        left: 37%;
+        transform: translate(-50%, -50%);
+        height: 3px; 
+        background-color: #333;
+    }
+    .end-box {
+        width: 200px;
+        height: 100px;
+        background-color: #3498db;
+        border-radius: 10px;
+        position: absolute;
+        top: calc(55% + 300px); 
+        left: 50%; 
+        transform: translateX(-50%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .end-box img {
+        max-width: 100%;
+        max-height: 100%;
+        border-radius: 10px;
+    }
+  
+    .specific-box {
+        width: 200px;
+        height: 100px;
+        background-color: #3498db;
+        border-radius: 10px;
+        position: absolute;
+        top: calc(50% + 100px); 
+        left: 60%; 
+        transform: translateX(-50%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .specific-box img {
+        max-width: 100%;
+        max-height: 100%;
+        border-radius: 10px;
+    }
+
+    .rectangle-container {
+    position: absolute;
+    top: 23%; 
+    left: 73%;
+    transform: translateX(-50%);
+    display: flex;
+    justify-content: space-between;
+    width: 500px; 
+    border: 3px solid #333; 
+    padding: 28px; 
+}
+ 
+    .rectangle-box {
+    width: 200px; 
+    height: 100px; 
+    background-color: #3498db;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.rectangle-box img {
+    max-width: 100%;
+    max-height: 100%;
+    border-radius: 10px;
+}
+.adline{
+  width: 600px;        
+  position: absolute;
+        bottom: 340%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        height: 3px; 
+        background-color: #333;
+}
+
+.box {
+    position: relative;
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); 
+    opacity: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: opacity 0.3s ease;
+    border-radius: 10px;
+}
+
+.overlay p {
+    color: white;
+    font-size: 13px;
+}
+
+.box:hover .overlay,
+.end-box:hover .overlay,
+.specific-box:hover .overlay,
+.rectangle-box:hover .overlay {
+    opacity: 1;
+}
+
+.box img,
+.end-box img,
+.specific-box img,
+.rectangle-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9); 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999; 
+}
+
+.modal img {
+    max-width: 90%;
+    max-height: 90%;
+    border-radius: 10px;
+}
+table {
+        border-collapse: collapse;
+        width: 80%;
+        max-width: 400px; 
+        background-color: rgba(255, 255, 255, 0.9); 
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); 
+    }
+
+    th, td {
+        padding: 10px;
+        text-align: center;
+        border-bottom: 1px solid #ddd; 
+    }
+
+    th {
+        background-color: #f2f2f2; 
+    }
+
+    tr:last-child td {
+        border-bottom: none; 
+    }
+</style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="box">
+                <img src="memo.png" alt="DUKAJ">
+                <div class="overlay">
+                    <p>MEMO NEXHIPI</p>
+                </div>
+        </div>
+        <div class="line"></div>
+        <div class="box">
+                <img src="zva.png" alt="ZVAP TP">
+                <div class="overlay">
+                    <p>ZVAP TEPELENE-MEMALIAJ</p>
+                </div>
+            <div class="vertical-line"></div> 
+            <div class="vertical-line-up"></div> 
+            <div class="horizontal-line-up"></div> 
+            <div class="horizontal-line"></div>
+            <div class="horizontal-line-2"></div>
+            <div class="adline"></div> 
+        </div>
+        <div class="line"></div>
+        <div class="box">
+                <img src="nevro.png" alt="HORMOVE">
+                <div class="overlay">
+                    <p>NEVRO SELIMI</p>
+            </div>
+        </div>
+    </div>
+    <div class="end-box">
+      <img src="abaz.jpeg" alt="Abaz Shehu">
+      <div class="overlay">
+        <p>ABAZ SHEHU</p>
+    </div>
+  </div> 
+    
+    <div class="specific-box">
+      <img src="7marsi.jpeg" alt="7 Marsi">
+      <div class="overlay">
+        <p>7 MARSI</p>
+    </div>
+      </div>
+    <div class="specific-box" style="top: calc(50% + 200px); left: 40%;"><img src="avni.jpeg" alt="Avni Rustemi">
+      <div class="overlay">
+        <p>AVNI RUSTEMI</p>
+    </div>
+    </div>
+    
+    <div class="specific-box" style="top: 9%; left: 77%;"><img src="xhevit.png" alt="Additional Box 1">
+      <div class="overlay">
+        <p>XHEVIT CELA</p>
+    </div>
+  </div>
+    <div class="specific-box" style="top: 9%; left: 23%;"><img src="adem.png" alt="Additional Box 2">
+      <div class="overlay">
+        <p>ADEM ALUSHI</p>
+    </div>
+  </div>
+    <div class="specific-box" style="top: 1%; left: 50%;"><img src="ormen.png" alt="Additional Box 3">
+      <div class="overlay">
+      <p>ORMEN SELAMI</p>
+  </div></div>
+
+    <div class="rectangle-container">
+        <div class="rectangle-box"><img src="sali.png" alt="Sali Nivica">
+          <div class="overlay">
+            <p>SALI NIVICA</p>
+        </div></div>
+        <div class="rectangle-box"><img src="nimete.png" alt="Nimete Progonati">
+          <div class="overlay">
+            <p>NIMETE PROGONATI</p>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function() {
+          const paragraphs = document.querySelectorAll("p");
+  
+          paragraphs.forEach(function(paragraph) {
+              paragraph.addEventListener("click", function() {
+                  const modal = document.createElement("div");
+                  modal.classList.add("modal");
+  
+                  const closestBox = paragraph.closest(".box, .end-box, .rectangle-box, .specific-box");
+                  if (closestBox) {
+                      const image = closestBox.querySelector("img");
+                      if (image) {
+                          const modalImg = document.createElement("img");
+                          modalImg.src = image.src;
+                          modalImg.alt = image.alt;
+                          modalImg.style.filter = "blur(5px)"; 
+                          modal.appendChild(modalImg);
+  
+                          const table = document.createElement("table");
+                          table.style.position = "absolute";
+                          table.style.top = "50%";
+                          table.style.left = "50%";
+                          table.style.transform = "translate(-50%, -50%)";
+  
+                          if (paragraph.textContent === "MEMO NEXHIPI") {
+                              addDataToTable(table, [
+                              ["MEMO NEXHIPI", "AF", "AMU", "AML"],
+                                  ["Nr. i nxenesve", "71", "65", "0"],
+                                  ["Nr. i mesuesve", "14", "21", "0"],
+                                  ["Nr. i klasave", "12", "8", "0"]
+                              ]);
+                          } else if (paragraph.textContent === "ZVAP TEPELENE-MEMALIAJ") {
+                              addDataToTable(table, [
+                                  ["ZVAP TEPELENE-MEMALIAJ", "AF", "AMU", "AML"],
+                                  ["Nr. i nxenesve", "544", "670", "311"],
+                                  ["Nr. i mesuesve", "77", "120", "52"],
+                                  ["Nr. i klasave", "72", "63", "23"]
+                              ]);
+                          } else if (paragraph.textContent === "NEVRO SELIMI") {
+                              addDataToTable(table, [
+                                  ["NEVRO SELIMI", "AF", "AMU", "AML"],
+                                  ["Nr. i nxenesve", "21", "38", "0"],
+                                  ["Nr. i mesuesve", "6", "10", "0"],
+                                  ["Nr. i klasave", "6", "5", "0"]
+                              ]);
+                          } else if (paragraph.textContent === "AVNI RUSTEMI") {
+                              addDataToTable(table, [
+                                  ["AVNI RUSTEMI", "AF", "AMU", "AML"],
+                                  ["Nr. i nxenesve", "125", "129", "0"],
+                                  ["Nr. i mesuesve", "11", "14", "0"],
+                                  ["Nr. i klasave", "6", "7", "0"]
+                              ]);
+                          } else if (paragraph.textContent === "7 MARSI") {
+                              addDataToTable(table, [
+                                  ["7 MARSI", "AF", "AMU", "AML"],
+                                  ["Nr. i nxenesve", "86", "117", "0"],
+                                  ["Nr. i mesuesve", "6", "14", "0"],
+                                  ["Nr. i klasave", "5", "6", "0"]
+                              ]);
+                          }else if (paragraph.textContent === "ABAZ SHEHU") {
+                              addDataToTable(table, [
+                                  ["ABAZ SHEHU", "AF", "AMU", "AML"],
+                                  ["Nr. i nxenesve", "0", "0", "190"],
+                                  ["Nr. i mesuesve", "0", "0", "16"],
+                                  ["Nr. i klasave", "0", "0", "7"]
+                              ]);
+                          } else if (paragraph.textContent === "NIMETE PROGONATI") {
+                              addDataToTable(table, [
+                                  ["NIMETE PROGONATI", "AF", "AMU", "AML"],
+                                  ["Nr. i nxenesve", "119", "123", "0"],
+                                  ["Nr. i mesuesve", "8", "15", "0"],
+                                  ["Nr. i klasave", "9", "10", "0"]
+                              ]);
+                          } else if (paragraph.textContent === "SALI NIVICA") {
+                              addDataToTable(table, [
+                                  ["SALI NIVICA", "AF", "AMU", "AML"],
+                                  ["Nr. i nxenesve", "0", "0", "8"],
+                                  ["Nr. i mesuesve", "0", "0", "8"],
+                                  ["Nr. i klasave", "0", "0", "5"]
+                              ]);
+                          } else if (paragraph.textContent === "XHEVIT CELA") {
+                              addDataToTable(table, [
+                                  ["SHKOLLA E MESME E BASHKUAR XHEVIT CELA", "AF", "AMU", "AML"],
+                                  ["Nr. i nxenesve", "24", "59", "37"],
+                                  ["Nr. i mesuesve", "17", "20", "13"],
+                                  ["Nr. i klasave", "17", "13", "5"]
+                              ]);
+                          } else if (paragraph.textContent === "ORMEN SELAMI") {
+                              addDataToTable(table, [
+                                  ["SHKOLLA E MESME E BASHKUAR ORMEN SELAMI", "AF", "AMU", "AML"],
+                                  ["Nr. i nxenesve", "24", "54", "32"],
+                                  ["Nr. i mesuesve", "6", "11", "5"],
+                                  ["Nr. i klasave", "6", "6", "3"]
+                              ]);
+                          } else if (paragraph.textContent === "ADEM ALUSHI") {
+                              addDataToTable(table, [
+                                  ["ADEM ALUSHI", "AF", "AMU", "AML"],
+                                  ["Nr. i nxenesve", "74", "85", "44"],
+                                  ["Nr. i mesuesve", "9", "15", "10"],
+                                  ["Nr. i klasave", "10", "8", "3"]
+                              ]);
+                          }
+  
+                          modal.appendChild(table);
+  
+                          document.body.appendChild(modal);
+  
+                          modal.addEventListener("click", function() {
+                              document.body.removeChild(modal);
+                          });
+                      }
+                  }
+              });
+          });
+      });
+  
+      function addDataToTable(table, data) {
+          data.forEach(function(rowData) {
+              const row = document.createElement("tr");
+              rowData.forEach(function(cellData) {
+                  const cell = document.createElement("td");
+                  cell.textContent = cellData;
+                  row.appendChild(cell);
+              });
+              table.appendChild(row);
+          });
+      }
+  </script>
+  
+  
+  
+</body>
+</html>
